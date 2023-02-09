@@ -15,16 +15,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={styles.container}>
-        <div className={styles.header}>Header</div>
 
-        <div className={styles.interface}>
-          <div className={styles.canales}>canales</div>
-          <div className={styles.chat}>chat</div>
-          <div className={styles.input}>input</div>
-          <div className={styles.usuarios}>usuarios</div>
-        </div>
-      </main>
     </>
   );
 }
