@@ -1,8 +1,13 @@
 import styles from './styles.module.css';
 import { useCookies } from 'react-cookie';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+  const router = useRouter();
   const [nickname, setNickname] = useState('');
   const [cookie, setCookie] = useCookies();
 
@@ -10,8 +15,23 @@ const Login = () => {
     setNickname(e.target.value);
   };
 
-  const handleNameToCookies = (): void => {
-    setCookie('nickname', nickname, { path: '/' });
+  const handleNameToCookies = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    if (nickname != '') {
+      setCookie('nickname', nickname, { path: '/' });
+      router.push('/chat');
+    } else {
+      toast(`🦄 Empty nickname!`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
   };
 
   return (
@@ -38,6 +58,18 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
