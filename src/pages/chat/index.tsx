@@ -20,14 +20,14 @@ const Chat = () => {
         <div className={styles.header}>Welcome to real time chat</div>
 
         <div className={styles.interface}>
-          <div className={styles.canales}>canales</div>
+          <div className={styles.channels}>canales</div>
           <div className={styles.chat}>
             <ShowedMessages />
           </div>
           <div className={styles.input}>
             <InputMessage cookies={cookies} data={data} setData={setData} />
           </div>
-          <div className={styles.usuarios}>usuarios</div>
+          <div className={styles.users}>usuarios</div>
         </div>
       </main>
     </div>

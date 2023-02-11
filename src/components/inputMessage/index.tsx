@@ -4,9 +4,11 @@ function InputMessage({ cookies, data, setData }: any) {
   const HandleChangeMessage = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    data.message.id = cookies.nickname;
-    data.message.content = e.target.value;
-    setData({ ...data });
+    data.message = {
+      id: cookies.nickname,
+      content: e.target.value,
+      date: Date.now(),
+    };
   };
 
   const HandleSubmitMessage = (e: React.FormEvent<HTMLButtonElement>) => {
