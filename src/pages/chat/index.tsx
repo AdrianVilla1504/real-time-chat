@@ -3,16 +3,17 @@ import styles from '@/styles/Home.module.css';
 import InputMessage from '@/components/inputMessage';
 import { useCookies } from 'react-cookie';
 import ShowedMessages from '@/components/showedMessages';
+import { DataChat, Message } from '@/types/types';
 
 const Chat = () => {
   const [cookies, setCookie] = useCookies();
 
-  const [data, setData] = useState<any>({
+  const [data, setData] = useState<DataChat>({
+    localUser: cookies.nickname,
+    users: [],
     message: { id: '', content: '', date: new Date() },
     messages: [],
   });
-
-  console.log(data);
 
   return (
     <div>
@@ -22,7 +23,15 @@ const Chat = () => {
         <div className={styles.interface}>
           <div className={styles.channels}>canales</div>
           <div className={styles.chat}>
-            <ShowedMessages />
+            {data.messages.map((msg: Message, i: number) => {
+              if (msg) {
+                return (
+                  <div>
+                    <ShowedMessages message={msg} key={i} index={i} />
+                  </div>
+                );
+              }
+            })}
           </div>
           <div className={styles.input}>
             <InputMessage cookies={cookies} data={data} setData={setData} />
